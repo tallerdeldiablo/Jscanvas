@@ -1,0 +1,66 @@
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+
+    // get canvas and context
+
+    var canvas = document.getElementById("canvas");
+
+    var ctx = canvas.getContext("2d");
+
+    // ball properties
+
+    var x = canvas.width / 2;
+
+    var y = canvas.height / 2;
+
+    var radius = 25;
+
+    var color = "red";
+
+    var speedX = 2;
+
+    var speedY = 2;
+
+    // update ball position
+
+    function update() {
+
+        x += speedX;
+
+        y += speedY;
+
+        // check for collisions with walls
+
+        if (x + radius > canvas.width || x - radius < 0) {
+
+            speedX = -speedX;
+
+        }
+
+        if (y + radius > canvas.height || y - radius < 0) {
+
+            speedY = -speedY;
+
+        }
+
+        // draw ball
+
+        ctx.beginPath();
+
+        ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+
+        ctx.fillStyle = color;
+
+        ctx.fill();
+
+        ctx.closePath();
+
+    }
+
+    // animate
+
+    setInterval(update, 10);
+
+</script>
+
